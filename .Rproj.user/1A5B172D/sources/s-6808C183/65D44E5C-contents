@@ -5,7 +5,11 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## packages
+```{r}
+library(googlelesheets4)
+
+```
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -24,3 +28,76 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+a <- 2
+a = 2 #=與<-同義
+b <-3
+```
+```{r}
+my_108_total_credits <- 15
+_108_total_credits <- 15
+108_total_credits <- 15
+_my_108_total_credits <- 15
+```
+
+
+```{r}
+我的年紀 <- 19
+my_age <- 我的年紀
+```
+
+
+```{r}
+num <- 1
+num1 <- c(5,4)
+```
+
+
+```{r}
+num1 = c(-1,2)
+num2 = c(6,4)
+```
+
+
+```{r}
+vNum1 <- c(-1,5)
+vNum2 <- c(2,3)
+vNum3 <- c(vNum2, vNum1)
+```
+
+
+```{r}
+vNum4 <- c(vNum4, vNum1) # 向量疊代 （recursive vector concatenate）
+
+```
+
+
+```{r}
+dialogue <- c('小明說："明天不用上課。"',
+               '小花說："真的嗎？"')
+
+cat(dialogue, sep="\n")
+
+a <- 5
+c<-7
+
+c
+```
+
+
+```{r}
+c=a+b
+```
+```{r}
+library(googlesheets4)
+GET(https://www.dropbox.com/s/0etoflih5eqc0bc/hypothesisData.csv?dl=1)
+
+```
+```{r}
+library(googlesheets4)
+`出席狀況表單網址` <-'https://www.dropbox.com/s/rc6t40gsxduysz6/exDataPost80s.csv?dl=1 '
+# 缺乏定義值
+ss <- as_sheets_id(`出席狀況表單網址`)
+homework_sheet <- sheets_read(ss,sheet=1)
+```
+
