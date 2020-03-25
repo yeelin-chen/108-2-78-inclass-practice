@@ -1,0 +1,116 @@
+---
+---
+```{r}
+c("aa","bb","cc") #字串相同type
+c("宋亞軒","易烊千璽")
+#list允許不同type
+
+
+```
+```{r}
+majors_char<-c("經濟系","會計系","金融系")
+typeof(majors_char)
+class(majors_char)
+```
+```{r}
+#factor是一個整數跟重複的中文的對應關係,方便電腦储存
+majors10_factor <- factor(majors10_char)
+# 或
+majors10_factor <- factor(
+  c('經濟學系','社會學系','社會學系','經濟學系','經濟學系','社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+)
+
+typeof(majors10_factor)
+class(majors10_factor)
+```
+```{r}
+stringinteger<-c("1","2","5") #此時的ttpe是字串無法加減
+class(stringinteger)
+stringinteger+2
+
+```
+```{r}
+stringinteger<-c(1,2,5) #此時的type是數字可加減
+class(stringinteger)
+stringinteger+2
+
+```
+```{r}
+stringinteger<-c("1","2","5") 
+class(stringinteger)
+#轉換class  "as.格式"
+as.numeric(stringinteger)+2
+
+```
+```{r}
+student_Id<-c(410873104,410873042)
+as.character(student_Id)
+class(student_Id) #as.的功能不會影響他本身的格式
+```
+```{r}
+student_Id<-c(410873104,410873042)
+as.character(student_Id)
+class(student_Id)
+#再一次命令student_Id,就可以更改他的type
+
+student_Id<-as.character(student_Id)
+class(student_Id)
+
+```
+```{r}
+library(lubridate)
+tpe<-ymd_hms(" 2020-03-18 13:52:40",tz="Asia/Taipei")
+tpe
+#輸入年日月時間
+#以字串輸入
+#tz=時區
+lis<-mdy_hms("Mar.18, 2020, 05:52:40",tz="Europe/Lisbon")
+lis
+#輸入月日年時間
+
+
+
+```
+```{r}
+studenttime<-c(
+ymd_hms("2020-03-11 16:11:47",tz="Asia/Taipei"),
+ymd_hms("2020-03-11 16:33:01",tz="Asia/Taipei"),
+ymd_hms("2020-03-04T08:17:35Z")
+)
+studenttime
+
+
+```
+```{r}
+studenttime<-c(
+ymd_hms("2020-03-11 16:11:47",tz="Asia/Taipei"),
+ymd_hms("2020-03-11 16:33:01",tz="Asia/Taipei"),
+ymd_hms("2020-03-04T08:17:35Z")
+)
+studenttime
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
