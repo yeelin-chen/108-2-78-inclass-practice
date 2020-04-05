@@ -92,6 +92,52 @@ print(github_commit)
 `小明`
 ```
 
+```{r}
+library(lubridate)
+`台北市`<-list(
+               `地點`=list("台北市"),
+                `溫度`=list(`最高溫度`=list("25"),`最低溫度`=list("18")
+                            ) 
+               )
+
+`新北市`<-list(
+                `地點`=list("新北市"),
+                 `溫度`=list(`最高溫度`=list("24"),`最低溫度`=list("15")
+                             )
+                )
+time1=ymd("2020-03-31")
+time2=ymd("2020-04-01")
+
+`今明台北市氣象`<-list(c(time1,time2),`台北市`)
+`今明新北市氣象`<-list(c(time1,time2),`新北市`)
+
+
+`今明台北市氣象`
+`今明新北市氣象`
+
+
+```
+```{r}
+library(lubridate)
+              
+time1=ymd("2020-03-31")
+time2=ymd("2020-04-01")
+
+`台北市天氣預報`<-list(`時間`=c(time1,time2),
+               `地點`=list("台北市"),
+               `溫度`=list(`最高溫度`=list("25"),`最低溫度`=list("18")
+                            ) 
+               )
+
+`新北市天氣預報`<-list(`時間`=c(time1,time2),
+               `地點`=list("新北市"),
+               `溫度`=list(`最高溫度`=list("24"),`最低溫度`=list("15")
+                             )
+                )
+
+`台北市天氣預報`
+`新北市天氣預報`
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
