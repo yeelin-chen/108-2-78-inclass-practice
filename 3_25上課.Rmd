@@ -83,11 +83,12 @@ studenttime
 ```
 ```{r}
 studenttime<-c(
-ymd_hms("2020-03-11 16:11:47",tz="Asia/Taipei"),
-ymd_hms("2020-03-11 16:33:01",tz="Asia/Taipei"),
+ymd_hms("2020-03-11 16:11:47","2020-03-11 16:33:01",tz="Asia/Taipei"),
+
 ymd_hms("2020-03-04T08:17:35Z")
 )
 studenttime
+class(studenttime)
 
 ```
 

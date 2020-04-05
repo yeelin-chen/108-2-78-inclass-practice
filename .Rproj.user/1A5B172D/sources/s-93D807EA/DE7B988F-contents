@@ -1,0 +1,118 @@
+---
+---
+```{r}
+library(lubridate)
+`宋亞軒的生日`<-list(
+  ymd_hms("2004-03-04T13:40:55Z"),"雙魚座",16,"第一主唱"
+  )
+print(`宋亞軒的生日`)
+#list可以同時儲存各種型態的元素
+
+```
+
+```{r}
+vector<-c("2004-03-04T13:40:55Z","雙魚座","16","第一主唱")
+vector
+
+#c只能儲存單一種型態
+
+```
+
+
+
+```{r}
+#vector不會有疊帶作用:vector中的vector會將各個元素拆開排列
+
+vector2<-c(
+         c("宋亞軒","時代少年團","第一歌擔"),
+         c("易烊千璽","tfbots","舞擔")
+         )
+vector2
+```
+
+```{r}
+#list的元素可為vector和list
+list2<-list(
+        c("宋亞軒","時代少年團","第一歌擔"),
+        c("易烊千璽","tfboys","舞擔")
+        )
+list2
+
+```
+
+```{r}
+#list中有list
+list3<-list(
+        list("宋亞軒","時代少年團","歌擔"),
+        list("易烊千璽","tfboys","舞擔")
+        )
+list3
+
+```
+```{r}
+#list中有list且將相同的元素用成vector
+`時代巨峰`<-list(
+                  list("時代少年團",c("宋亞軒","馬嘉祺")),
+list("tfboys","易烊千璽")
+  )
+`時代巨峰`
+```
+
+```{r}
+#list中的元素可以命名
+`時代巨峰`<-list(
+                  `第一代`=list(`團名`=c("時代少年團"),`歌擔`=c("宋亞軒","馬嘉祺")),
+`第二代`=list(`團名`=c("tfboys"),`舞擔`=c("易烊千璽"))
+  )
+`時代巨峰`
+
+```
+```{r}
+#Practice
+library(lubridate)
+github_commit<-list(
+              author=list(name="Martin老師",email="用戶email為mtlin@gm.ntpu.edu.tw",time=ymd_hms("2020-03-25T07:17:40Z")),
+              committer=list(name="emilyluckey",email="用戶email為emily007@gmail.com",time=ymd_hms("2020-03-26T08:18:40Z")),
+              message=c("update")
+                 )
+print(github_commit)
+
+```
+```{r}
+`小明`<-list(
+         `108學年第1學期`=list(
+           list(`老師`="Alice老師",`課程`="個體經濟學",`得分`=85),
+           list(`老師`="Mark老師",`課程`="總體經濟學",`得分`=73)
+                         ),
+         `108學年第2學期`=list(
+           `老師`="Jason老師",`課程`="作業研究",`得分`=90)
+           
+         )
+         
+`小明`
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

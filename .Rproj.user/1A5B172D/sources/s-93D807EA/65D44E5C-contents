@@ -84,18 +84,9 @@ c<-7
 c
 ```
 
-
-```{r}
-c=a+b
-```
 ```{r}
 library(googlesheets4)
-GET(https://www.dropbox.com/s/0etoflih5eqc0bc/hypothesisData.csv?dl=1)
-
-```
-```{r}
-library(googlesheets4)
-`出席狀況表單網址` <-'https://www.dropbox.com/s/rc6t40gsxduysz6/exDataPost80s.csv?dl=1 '
+`出席狀況表單網址` <-('https://www.dropbox.com/s/rc6t40gsxduysz6/exDataPost80s.csv?dl=1')
 # 缺乏定義值
 ss <- as_sheets_id(`出席狀況表單網址`)
 homework_sheet <- sheets_read(ss,sheet=1)
