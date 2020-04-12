@@ -1,6 +1,0 @@
-"0","library(lubridate)"
-"0","taiwan_time<-ymd_hms(""2019-4-12 12:55:30"",tz=""Asia/Taipei"")"
-"0","oslo_time<-mdy_hms(""18.11.2018 15:33:02"",tz=""Europe/Oslo"")"
-"2","All formats failed to parse. No formats found."
-"0","two_times<-c(taiwan_time,oslo_time)"
-"0",""

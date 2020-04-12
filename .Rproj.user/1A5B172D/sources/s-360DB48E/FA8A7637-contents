@@ -22,6 +22,18 @@ majors10_factor <- factor(
 
 levels(majors10_factor)
 ```
+```{r}
+library(lubridate)
+taiwan_time<-ymd_hms("2019-04-12 12:55:30",tz="Asia/Taipei")
+oslo_time<-dmy_hms("18-11-2018 15:33:02",tz="Europe/Oslo")
+
+
+two_times<-c(taiwan_time,oslo_time)
+two_times
+```
+```{r}
+source("https://www.dropbox.com/s/mk7bxvu6a3lxf79/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
 
 ## R Markdown
 
