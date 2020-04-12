@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1586580074727.000,
+    "created" : 1586704887226.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "833348405",
-    "id" : "409D615A",
-    "lastKnownWriteTime" : 1586696639,
-    "last_content_update" : 1586696639480,
-    "path" : "C:/Users/asus/Downloads/homework1 (5).Rmd",
+    "hash" : "653345708",
+    "id" : "9DB6F99",
+    "lastKnownWriteTime" : 1586526632,
+    "last_content_update" : 1586526632,
+    "path" : "C:/Users/asus/Downloads/homework1 (4).Rmd",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "73,17",
+        "cursorPosition" : "144,2",
         "last_setup_crc32" : "360DB48E6e85358a",
-        "scrollLine" : "66"
+        "scrollLine" : "136"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
