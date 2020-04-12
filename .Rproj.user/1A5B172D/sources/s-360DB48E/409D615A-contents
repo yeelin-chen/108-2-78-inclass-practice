@@ -70,7 +70,8 @@ two_times
 
 ```{r ans23}
 # two_times_chicago
-two_times_chicago<-
+two_times_chicago<-with_tz(two_times,tzone="America/Chicago")
+two_times_chicago
 ```
 
 ## 3 List
