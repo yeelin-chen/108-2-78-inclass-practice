@@ -1,0 +1,8 @@
+"0","# accidents"
+"0","library(lubridate)"
+"0","accidents<-list(time=ymd(""2014-01-01"",tz=""Asia/Taipei""),"
+"0","                bureaus=list("
+"0","                        ""板橋分局""=list(type=""駕駛人過失-其他"",casualties=1),"
+"0","""海山分局""=list(type=""駕駛人過失-搶越行人穿越道"",casualties=1)                     )"
+"0","                  "
+"0","                )"

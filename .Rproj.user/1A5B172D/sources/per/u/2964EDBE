@@ -1,18 +1,18 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1584515904820.000,
+    "created" : 1586527346519.000,
     "dirty" : false,
-    "encoding" : "UTF-8",
+    "encoding" : "",
     "folds" : "",
-    "hash" : "3867272253",
-    "id" : "65D44E5C",
-    "lastKnownWriteTime" : 1585127947,
-    "last_content_update" : 1585127948021,
-    "path" : "C:/Users/asus/Desktop/R語言0318.Rmd",
+    "hash" : "1244757934",
+    "id" : "2964EDBE",
+    "lastKnownWriteTime" : 2599072890160,
+    "last_content_update" : 1586529024239,
+    "path" : null,
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "90,30",
+        "cursorPosition" : "20,20",
         "last_setup_crc32" : "",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
@@ -20,7 +20,7 @@
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 2,
+    "relative_order" : 1,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
