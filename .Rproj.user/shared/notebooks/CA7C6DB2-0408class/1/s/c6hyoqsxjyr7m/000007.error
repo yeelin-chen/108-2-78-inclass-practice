@@ -1,0 +1,1 @@
+{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"C(1, 5, 10, 14)","line_number":0},{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"stop(\"object not interpretable as a factor\")","line_number":0}],"message":"Error in C(1, 5, 10, 14) : object not interpretable as a factor\n"}
