@@ -1,0 +1,202 @@
+---
+---
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+str(listExample)
+
+```
+
+```{r}
+str(listExample[["學期"]])
+#取出學期的物件值:等同於listExample$`學期`
+#第一行的list of 2 是只學期這個物件有2個元素
+```
+
+```{r}
+#在上一個物件中只留下學期這個元素，其他刪去
+str(listExample["學期"])
+#第一行的List of 1是指在listexample裡面只剩下學期一個元素
+```
+```{r}
+#如果要取出listExample的學期裡面teacher元素
+get1<-listExample[["學期"]]
+get1[["108-1"]][[1]][["teacher"]]->get1_ele;get1_ele
+
+```
+```{r}
+listExample["學期"][[1]][["108-1"]][[1]]["teacher"]
+listExample["學期"][["學期"]][["108-1"]][[1]]["teacher"]
+#第一層的一個中括號的學期，只有將學期這個物件留下來的步驟，因此變成list of 1後，還需要將學期這個物件取出再取出裡面的東西
+```
+```{r}
+today <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+
+```{r}
+str(weather)
+#vector裡面的元素也可以命名，但結構裡他是"Named num"是跑不出來的，因此無法用$取出
+```
+
+```{r}
+#Q取出新北highest_temp
+weather[[1]][[2]][[2]]
+weather[[1]][[2]]$highest_temp 
+weather[[1]][[2]][["highest_temp"]] 
+#找不到highest_temp這個物件名，只能用位置找
+
+```
+```{r}
+#可在身為lIST物件作命名，則它可以用$找
+today <- list(
+  list("台北市",highest_temp=c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",highest_temp=c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",highest_temp=c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",highest_temp=c(highest_temp = 24),c(lowest_temp = 15)))
+#在第二層lIST中，的第3個元素c(highest_temp = 25)，將他命名為highest_temp,，所以他可以用$取元素
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+
+```{r}
+weather[[1]][[2]]$highest_temp
+```
+
+```{r}
+a <- c("1","b","TRUE")
+a
+a[[2]] <- "c" # 元素存在: 替換
+a[[4]] <- "7" # 元素不存在： 增加
+a[c(5,6)] <- c("J", "K")
+a[[7]]<-"Jonson"
+a<-c(a,"Mary")
+a
+```
+
+```{r}
+library(lubridate)
+list1 <- 
+  list(
+    list(
+      name="Jack",
+      birthday=ymd("1998-03-21"),
+      status=c(height=177, weight=80)
+    )
+  )
+
+str(list1)
+```
+
+```{r}
+list1[[1]][[2]]<-ymd("1997-03-21")
+list1[[2]]<-list( name="Mary",
+  birthday=ymd("1998-08-24")
+                 )
+str(list1)
+#list1沒有第2個元素，所以他是增加了list1第二個元素
+```
+```{r}
+#替Mary依Jack的記錄方式增加身高163，體重45。將Jack的身高改成176
+list1[[2]][[3]]<-c(163,45)
+list1[[1]][[3]]<-c(176,80)
+str(list1)
+```
+
+```{r}
+list1[[1]][["age"]] <- 21
+list1[[2]]["age"] <- list(21)
+#單層[]會保留母層的型態(list of 2),所以在設定的時候也要用同型態
+
+# 改變「一個」時，使用[[ ]]比較不會錯。
+str(list1)
+
+```
+
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+# 有多少位置可選：
+str(listExample)
+```
+
+```{r}
+
+listExample$`學期` $`108-1`
+[[4]]<-list(`name`="產業經濟學")
+str(listExample)
+
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+weather
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

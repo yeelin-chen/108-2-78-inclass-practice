@@ -1,0 +1,7 @@
+"0","#如果要取出listExample的學期裡面teacher元素"
+"0","get1<-listExample[[""學期""]]"
+"0","get1[[""108-1""]][[1]][[""teacher""]]->get1_ele;get1_ele"
+"1","[1]"
+"1"," ""Alice"""
+"1","
+"

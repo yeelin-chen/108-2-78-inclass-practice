@@ -1,0 +1,16 @@
+"0","#Q取出新北highest_temp"
+"0","weather[[1]][[2]][[2]]"
+"1","highest_temp "
+"1","
+"
+"1","          24 "
+"1","
+"
+"0","weather[[1]][[2]]$highest_temp "
+"1","NULL
+"
+"0","weather[[1]][[2]][[""highest_temp""]] "
+"1","NULL
+"
+"0","#找不到highest_temp這個物件名，只能用位置找"
+"0",""
