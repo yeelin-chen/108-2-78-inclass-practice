@@ -43,6 +43,12 @@
 "
 "1"," "
 "1",""
+"2","Warning in strsplit(code, ""\n"", fixed = TRUE) :"
+"2"," 輸入的字串 2 不適用於此語言環境
+"
+"2","Error in if (substring(line, pos, pos + (nchar(indent) - 1)) == indent) { : 
+  需要 TRUE/FALSE 值的地方有缺值
+"
 "1","$ "
 "1",""
 "1","學期   "

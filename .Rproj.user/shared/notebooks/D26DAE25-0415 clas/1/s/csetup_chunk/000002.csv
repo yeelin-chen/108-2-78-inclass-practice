@@ -1,0 +1,4 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","weather"
+"2","錯誤: 找不到物件 'weather'
+"
