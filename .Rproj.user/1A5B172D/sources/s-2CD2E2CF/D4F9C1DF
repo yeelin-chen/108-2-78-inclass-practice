@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588438419463.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D4F9C1DF",
+    "lastKnownWriteTime" : 2991249434424,
+    "last_content_update" : 1588438419463,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "746e4db82b4f43b3a2ae93cfd2a38937",
+        "name" : "exchangeRate",
+        "title" : "exchangeRate"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}
