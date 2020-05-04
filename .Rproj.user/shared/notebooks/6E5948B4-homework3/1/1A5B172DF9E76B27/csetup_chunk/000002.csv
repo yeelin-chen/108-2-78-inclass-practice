@@ -1,0 +1,16 @@
+"0","knitr::opts_chunk$set(echo = F, eval=F)"
+"2","Warning message:
+"
+"2","In as.POSIXlt.POSIXct(x, tz) :"
+"2"," unknown timezone 'Poland, Warsaw'
+"
+"0","library(jsonlite); library(lubridate); library(readr); library(stringr)"
+"2","
+Attaching package: ．lubridate・
+
+"
+"2","The following objects are masked from ．package:base・:
+
+    date, intersect, setdiff, union
+
+"

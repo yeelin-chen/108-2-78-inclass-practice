@@ -1,1 +1,6 @@
 "0","knitr::opts_chunk$set(echo = TRUE)"
+"2","Warning message:
+"
+"2","In as.POSIXlt.POSIXct(x, tz) :"
+"2"," unknown timezone 'Poland, Warsaw'
+"

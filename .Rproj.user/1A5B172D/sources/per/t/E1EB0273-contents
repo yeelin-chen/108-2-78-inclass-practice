@@ -68,6 +68,9 @@ example$name[pick_above170]
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r}
+
+```
 
 ## R Markdown
 
@@ -116,6 +119,69 @@ exchangeRate_after98 <-
   )
 exchangeRate_after98 
 ```
+```{r}
+jsonlite::fromJSON("https://www.dropbox.com/s/3uijub7xheib405/list_victimAges_female.json?dl=1", simplifyDataFrame = F) -> list_victimAges_female
+```
+
+```{r}
+str(list_victimAges_female)
+View(list_victimAges_female$`數目`)
+sum(list_victimAges_female$`數目`)
+sum(list_victimAges_female$`數目`, na.rm=T)
+
+```
+
+```{r}
+list_victimAges_female$`年齡層`<- as.factor(list_victimAges_female$`
+  年齡層`)
+list_victimAges_female$`數目` <-
+  as.integer(list_victimAges_female$`數目`)
+str(list_victimAges_female)
+
+```
+
+```{r}
+levels(list_victimAges_female$`年齡層`) -> levels_ages
+levels_ages
+```
+
+
+```{r}
+source("https://www.dropbox.com/s/qsrw069n94k61lj/transcript100to103_list.R?dl=1")
+```
+
+```{r}
+str(transcript100to103)
+```
+
+```{r}
+pick_lawBusiness<-transcript100to103$`學院`%in%c("法學院","商學院")
+pick_lawBusiness
+```
+
+
+```{r}
+factor(transcript100to103$學院)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r cars}
 summary(cars)
