@@ -55,23 +55,25 @@ table_countsByArticle
 
 提示：table class物件為integer type，可對它取max()得到最大值。
 ```{r ans13}
-
-max(as.integer(table_countsByArticle))
-
-
-# mostViolatedArticle
+mostViolatedArticle<-table_countsByArticle[table_countsByArticle==max(table_countsByArticle)]
+names(mostViolatedArticle)
+as.integer(mostViolatedArticle)
+mostViolatedArticle
 ```
 
 ### 1.4 最常違反法條之內容
 找出最常違反條款的法條內容（可參見lawContent這個元素），並將此內容存在mostViolatedArticle_content (class character, length=1)
 ```{r ans14}
-
-# mostViolatedArticle_content
+mostViolatedArticle_content<-badEmployers$lawContent[mostViolatedArticle]
+mostViolatedArticle_content
 ```
 
 ### 1.5 處份日期最常落在幾月
 找出處份日期最常出現的月份並存在popularSentenceMonth（class character, length=1）：
 ```{r ans15}
+
+
+popularSentenceMonth<-
 # popularSentenceMonth
 ```
 
@@ -97,13 +99,16 @@ source("https://www.dropbox.com/s/5oy56om4q0857tt/student10.R?dl=1",encoding = "
 小知識:
 factor是從1開始的整數，沒有0喔。
 ```{r ans21}
-# chinese
+`new級分`<-c(1)+c(table$`級分`)
+chinese<-factor(c(table$`國文`),levels=c(`new級分`),ordered=T)
+chinese
 ```
 
 ### 2.2 str_detect()
 請取出10位學生中志願為北大的學生名字並存到名為ntpu_namelist的答案物件(class為chr):
 ```{r ans22}
-# ntpu_namelist
+ntpu_namelist<-students10$`姓名`[stringr::str_detect(students10$`志願`, "北大")]
+ntpu_namelist
 ```
 
 ### 2.3 vector計算&logical應用練習
@@ -118,7 +123,12 @@ factor是從1開始的整數，沒有0喔。
 志願沒有填北大經濟的人可以進一階篩選嗎?
 logical儲存的本質是甚麼?
 ```{r ans23}
-# ntpu_econtpu_eco
+students10$`志願`=="北大經濟"
+ntpu_eco<-students10$`姓名`[c(students10$`志願`=="北大經濟")==c(students10$`姓名`[choose$`國文`>=12])==
+c(students10$`姓名`[c(students10$`英文`)+c(students10$`數學`)>=26])]
+
+
+ntpu_eco
 ```
 
 ### 2.4 %in%
