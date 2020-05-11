@@ -1,0 +1,12 @@
+"0","max(table(factor(badEmployers$dt)))"
+"1","[1]"
+"1"," 26"
+"1","
+"
+"0","badEmployers$dt == 26 -> pick_mostdt"
+"0","as.character(badEmployers$dt[pick_mostdt]) -> popularSentenceMonth"
+"0",""
+"0","popularSentenceMonth"
+"1","character(0)
+"
+"0","# popularSentenceMonth"

@@ -1,1 +1,0 @@
-{"frames":[],"message":"錯誤: 未預期的 '==' in \"ntpu_eco<-students10$`姓名`[c(students10$`志願`==\"北大經濟\")==c(students10$`姓名`[choose$`國文`>=12])==\"\n"}
