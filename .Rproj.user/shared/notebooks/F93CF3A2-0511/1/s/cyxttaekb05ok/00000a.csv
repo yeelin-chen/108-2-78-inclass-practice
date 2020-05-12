@@ -1,0 +1,8 @@
+"0","addresses <- c("
+"0","  '臺中市后里區公館里尾社路385號',"
+"0","  '新竹市東區科學園路125號1樓'"
+"0","  )"
+"0","strip4<-strip5<-strip6<-""[0-9]"""
+"0","strip7<-""號"""
+"0","z<-paste0(strip4,strip5,strip6,""號"")"
+"0","str_view_all(addresses,z)"

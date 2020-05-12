@@ -1,0 +1,6 @@
+"0","str_count(headline,""謝陳官"")"
+"1","[1]"
+"1"," 1"
+"1","
+"
+"0","str_view_all(headline,""[謝陳官]"")"
