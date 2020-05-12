@@ -1,5 +1,0 @@
-"0",""
-"0","# 各學屆2年級人數"
-"0","table(transcript100to103$學屆)"
-"2","Error in table(transcript100to103$學屆) : 找不到物件 'transcript100to103'
-"

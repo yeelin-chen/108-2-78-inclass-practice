@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589300823002.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7014F2FE",
+    "lastKnownWriteTime" : -8234580514784625765,
+    "last_content_update" : 1589300823002,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "39FE389E",
+        "caption" : "semiGodsSemiDevils",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=semiGodsSemiDevils&cache_key=39FE389E",
+        "displayedObservations" : 1,
+        "environment" : "",
+        "expression" : "semiGodsSemiDevils",
+        "object" : "semiGodsSemiDevils",
+        "preview" : 0,
+        "totalObservations" : 1,
+        "variables" : 5
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
