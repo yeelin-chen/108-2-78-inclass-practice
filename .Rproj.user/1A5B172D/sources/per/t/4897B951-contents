@@ -1,0 +1,77 @@
+---
+---
+```{r}
+jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json") -> covid19
+```
+
+```{r}
+# 不可排序類別：性別、縣市、是否境外移入
+covid19$縣市 <- 
+  factor(covid19$縣市)
+covid19$縣市
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# 可排序類別資料：年齡層
+ covid19$年齡層<-
+  factor(
+    covid19$年齡層,
+    ordered=TRUE
+  )
+covid19$年齡層
+```
+```{r}
+jsonlite::fromJSON(
+  "https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"
+) -> population
+unlist(population) -> population
+```
+
+```{r}
+print(population)
+class(population) # 判斷出是named integer vector
+names(population) # 元素名稱是台灣各縣市
+```
+```{r}
+levels(covid19$縣市) # 是名稱字串向量
+
+# 由於population元素值有names，可以用`[名稱字串向量]`取出所要的
+levels(covid19$縣市) -> levelsInData
+population[levelsInData] -> population
+```
+```{r}
+newLevels <- names(population)
+newLevels
+```
+```{r}
+covid19$縣市 <-
+  factor(
+    covid19$縣市, levels=newLevels
+  )
+covid19$縣市
+levels(covid19$縣市)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
