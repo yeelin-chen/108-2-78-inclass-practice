@@ -1,5 +1,5 @@
 "0","place<-semiGodsSemiDevils$data$section==""P2"""
-"0","context_picked<-semiGodsSemiDevils$data$text[place]"
+"0","context_picked<-semiGodsSemiDevils$data$text[""place""]"
 "0","context_picked"
 "1","NULL
 "
