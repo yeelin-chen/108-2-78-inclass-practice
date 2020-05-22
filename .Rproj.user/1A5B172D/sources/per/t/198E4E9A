@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589959406150.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2755712464",
+    "id" : "198E4E9A",
+    "lastKnownWriteTime" : 1590050468,
+    "last_content_update" : 1590050468323,
+    "path" : "C:/Users/asus/Downloads/homework5410873104.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "221,0",
+        "scrollLine" : "210"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
