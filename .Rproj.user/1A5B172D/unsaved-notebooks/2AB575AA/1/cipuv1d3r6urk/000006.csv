@@ -1,2 +1,0 @@
-"0","pick_list<-map(dance,~.x$title)"
-"0","View(pick_list)"
