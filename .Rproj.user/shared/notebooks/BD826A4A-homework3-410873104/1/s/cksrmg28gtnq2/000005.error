@@ -1,0 +1,1 @@
+{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"levels(factor(badEmployers$law))","line_number":0},{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"factor(badEmployers$law)","line_number":0}],"message":"Error in factor(badEmployers$law) : 找不到物件 'badEmployers'\n"}

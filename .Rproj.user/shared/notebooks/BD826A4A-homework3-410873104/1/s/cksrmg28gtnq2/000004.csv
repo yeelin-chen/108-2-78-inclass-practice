@@ -1,0 +1,3 @@
+"0","violatedArticles<-levels(factor(badEmployers$law))"
+"2","Error in factor(badEmployers$law) : 找不到物件 'badEmployers'
+"

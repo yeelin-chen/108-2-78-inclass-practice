@@ -1,0 +1,4 @@
+"0","factor(table$國文,levels=table$國文[c(16:1)],ordered=T) ->"
+"0","  chinese"
+"0",""
+"0","# chinese"
