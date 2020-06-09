@@ -2,19 +2,19 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1590461055985.000,
-    "dirty" : false,
+    "dirty" : true,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
     "id" : "100A2BAB",
     "lastKnownWriteTime" : 1590569765,
-    "last_content_update" : 1590569765357,
+    "last_content_update" : 1591667971025,
     "path" : "C:/Users/asus/Downloads/homework6410873104.Rmd",
     "project_path" : null,
     "properties" : {
         "chunk_output_type" : "console",
-        "cursorPosition" : "192,3",
-        "scrollLine" : "0"
+        "cursorPosition" : "80,5",
+        "scrollLine" : "74"
     },
     "read_only" : false,
     "read_only_alternatives" : [
