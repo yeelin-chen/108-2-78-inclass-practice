@@ -78,7 +78,6 @@ subca_levels<-levels(subcategory)
 new2_levels<-str_extract(subca_levels,"(?<=#)[:graph:]+(?=\\()")
 levels(subcategory)<-new2_levels
 subcategory
-input
 # subcategory
 ```
 
