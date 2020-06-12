@@ -1,0 +1,12 @@
+"0","victims<-unique(victims)
+class(victims)
+"
+"1","[1]"
+"1"," ""character"""
+"1","
+"
+"0","length(victims)"
+"1","[1]"
+"1"," 825"
+"1","
+"

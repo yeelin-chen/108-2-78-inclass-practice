@@ -139,13 +139,14 @@ data228有四個元素：
   * 年：由檔號取出的民國年份（class integer）
   
 ```{r ans21}
-`全宗名編號`<-str_extract(data228$`檔號`,"[:upper:][:graph:]+[:upper:](?=/)")
-`全宗名編號`<-factor(`全宗名編號`)
- `年`<-str_extract(data228$`檔號`,"(?<=/)[:alnum:]{4}(?=/)")
-`年`<-as.integer(`年`)
-data228[["全宗名編號"]]<-`全宗名編號`
-data228[["年"]]<-`年`
-data228[c("全宗名編號","年")]
+number<-map(data228$`檔號`,~.x)
+spl_num<-str_split(number,"/")
+
+data228$`全宗名編號`<-unlist(map(spl_num,~.x[[1]]))
+data228$`全宗名編號`
+```
+
+```{r}
 
 ```
 
@@ -155,13 +156,14 @@ data228[c("全宗名編號","年")]
 ```{r ans22}
 pick_note <- data228$`附註` == "表冊名稱:臺灣省二二八事變正法及死亡人犯名冊"
 
-num_pick<- data228$`檔號` == "A803000000A/0036/340.2/5502.3/19/007"
+num_pickall<- data228$`檔號`[pick_note]
 
-victims <- data228$`個人名稱`[pick_note & num_pick]
-
+num_pick<-num_pickall[1]
+victims <- data228$`個人名稱`[data228$`檔號`== num_pick ]
+victims<-unique(victims)
 class(victims)
 
-victims
+length(victims)
 ```
 
 ### 2.3 重要人物
