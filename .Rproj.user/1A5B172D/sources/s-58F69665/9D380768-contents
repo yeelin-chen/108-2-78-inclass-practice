@@ -2,8 +2,8 @@
 title: "homework 7"
 output: html_document
 params:
-  studentName: "你的名字"
-  studentID: "你的學號"
+  studentName: "陳宜琳"
+  studentID: "410873104"
 ---
 
 # 注意事項
@@ -33,12 +33,19 @@ library(readr); library(stringr); library(purrr); library(magrittr); library(lub
 ### 1.1 單一立方體表面積
 立方體的表面積計算方式為六個面的面積加總，請計算長寬高分別為20,10,15的立方體A的表面積，並將結果存到surface_A(class integer)。
 ```{r ans11}
+surface_A<-15*10*2+15*20*2+20*10*2
+surface_A
 # surface_A
 ```
 
 ### 1.2 立方體表面積計算機
 請寫一個叫做surface_cube的function，它的功能是在你輸入長寬高後能自動回傳表面積的值，比如輸入surface_cube(20,10,15)，執行結果應該出現和你1.1計算出來一樣值。
 ```{r ans12}
+surface_cube<-function(len,wet,hi)
+{sur<-len*wet*2+len*hi*2+wet*hi*2
+  return(sur)}
+surface_cube(20,10,15)
+surface_cube
 # surface_cube
 ```
 
@@ -52,6 +59,11 @@ read_csv("https://www.dropbox.com/s/9xzccsvwrnctzul/mask.csv?dl=1") -> Mask
 請取出Mask裡的第一個身分證字號並用程式判斷他的單雙號，將結果儲存在1st_odd_or_even(class integer,length = 1)。
 單號請用1表示、雙號則用0表示。
 ```{r ans21}
+num<-Mask$`身分證字號`[[1]]
+num<-as.character(num)
+last_num<-as.integer(str_extract(num,"[:graph:]$"))
+`1st_odd_or_even`<-last_num %% 2
+`1st_odd_or_even`
 # `1st_odd_or_even`
 ```
 
@@ -59,6 +71,12 @@ read_csv("https://www.dropbox.com/s/9xzccsvwrnctzul/mask.csv?dl=1") -> Mask
 請寫一個叫做odd_or_even的function，它的功能是在你輸入身分證字號後能自動回傳其末碼屬於單數還是雙數(單雙數表示法同2.1)，比如輸入
 odd_or_even(Mask$身分證字號[[1]])，執行結果應該出現和你2.1計算出來的一樣。
 ```{r ans22}
+odd_or_even<-function(num){
+  num<-as.character(num)
+ last_num<-as.integer(str_extract(num,"[:graph:]$"))
+`1st_odd_or_even`<-last_num %% 2
+return(`1st_odd_or_even`)}
+odd_or_even
 # odd_or_even
 ```
 
@@ -128,6 +146,22 @@ list(
 
 
 ```{r ans31}
+get_courses<-function(entranceYear, major){
+  pick_year<-courseStructure$`學年`==as.character(entranceYear)
+  
+  pick_major1<-str_detect(courseStructure$`應修系級`,paste0(major,"1"))
+                          pick_major2<-str_detect(courseStructure$`應修系級`,paste0(major,"2"))
+pick_major3<-str_detect(courseStructure$`應修系級`,paste0(major,"3"))
+                                        pick_major4<-str_detect(courseStructure$`應修系級`,paste0(major,"4"))
+                                                                
+course<-list(
+  year1=unique(courseStructure$`科目名稱`[pick_year&pick_major1]),
+  year2=unique(courseStructure$`科目名稱`[pick_year&pick_major2]),
+  year3=unique(courseStructure$`科目名稱`[pick_year&pick_major3]),
+  year4=unique(courseStructure$`科目名稱`[pick_year&pick_major4]))
+return(course)
+}
+get_courses
 # get_courses
 ```
 
@@ -152,20 +186,21 @@ entranceYears <- 100:103
 # 針對entranceYears裡每一個元素一一代到get_course函數
 # 求得經濟系100-103入學年學生的系課程規劃科目種類
 entranceYears %>% 
-  map(~get_courses(entranceYear, major)) -> 
+  map(~get_courses(.x, majors[[1]])) -> 
   list_major1_allYears # 經濟系
 
 # 針對entranceYears裡每一個元素一一代到get_course函數
 # 求得社會系100-103入學年學生的系課程規劃科目種類
 entranceYears %>% 
-  map(~get_courses(entranceYear, major)) -> 
+  map(~get_courses(.x, majors[[2]])) -> 
   list_major2_allYears # 社會系
 
 # 針對entranceYears裡每一個元素一一代到get_course函數
 # 求得社工系100-103入學年學生的系課程規劃科目種類
 entranceYears %>% 
-  map(~get_courses(entranceYear, major)) -> 
+  map(~get_courses(.x, majors[[3]])) -> 
   list_major3_allYears # 社工系
+str(list_major1_allYears)
 
 ```
 
@@ -211,14 +246,14 @@ get_coursesAllYears <- function(entranceYears, major){
   # 可以針對「單一」major系對entranceYears裡不同入學年一一求算該系對該入學年學生的系課程規劃科目種類
   
   entranceYears %>% 
-    map(~get_courses(entranceYear, major)) -> 
+    map(~get_courses(.x, major)) -> 
     list_major1_allYears 
   return(list_major1_allYears)
 }
 
 # 一一將majors裡的系取出進行get_coursesAllYears運算以得到「取出系」在不同entranceYears入學年下的系課程規劃。
 majors %>% 
-  map(~get_coursesAllYears(entranceYears, major)) -> list_coursesAllMajorsAllYears
+  map(~get_coursesAllYears(entranceYears, .x)) -> list_coursesAllMajorsAllYears
 
 ```
 
@@ -234,5 +269,16 @@ majors %>%
   * 「year2, year3, year4」如year1, 分別是100-103學年入學「二、三、四」年級的科目種類「數目」，即該年級可供學生選的不同科目名稱有幾個。
   
 ```{r ans34}
+same_grade<-function(entranceYear,grade){ pick_year<-courseStructure$`學年`==as.character(entranceYear)
+  pick_grade<-str_detect(courseStructure$`應修系級`,paste0("經濟系",as.character(grade)))
+  course_grade<-courseStructure$`科目名稱`[pick_grade&pick_year]return(course_grade)}
+
+list_econCourseCounts<-list(
+   entranceYear=100:103
+  year1=map(entranceYear,same_grade(.x,1))
+  year2=map(entranceYear,same_grade(.x,2)),
+  year3=map(entranceYear,same_grade(.x,3)), 
+  year4=map(entranceYear,same_grade(.x,4))
+)
 # list_econCourseCounts
 ```

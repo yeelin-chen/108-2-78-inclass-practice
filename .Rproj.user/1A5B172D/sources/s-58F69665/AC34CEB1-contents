@@ -272,10 +272,16 @@ majors %>%
   * 「year2, year3, year4」如year1, 分別是100-103學年入學「二、三、四」年級的科目種類「數目」，即該年級可供學生選的不同科目名稱有幾個。
   
 ```{r ans34}
+same_grade<-function(entranceYear,grade){ pick_year<-courseStructure$`學年`==as.character(entranceYear)
+  pick_grade<-str_detect(courseStructure$`應修系級`,paste0("經濟系",as.character(grade)))
+  course_grade<-courseStructure$`科目名稱`[pick_grade&pick_year]return(course_grade)}
+
 list_econCourseCounts<-list(
    entranceYear=100:103
-  year1=c
-  
+  year1=map(entranceYear,same_grade(.x,1))
+  year2=map(entranceYear,same_grade(.x,2)),
+  year3=map(entranceYear,same_grade(.x,3)), 
+  year4=map(entranceYear,same_grade(.x,4))
 )
 # list_econCourseCounts
 ```
