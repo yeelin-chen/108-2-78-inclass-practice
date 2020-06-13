@@ -1,0 +1,23 @@
+"0","class(demand_return)"
+"1","[1]"
+"1"," ""function"""
+"1","
+"
+"0","# 查詢函數formals arguments要求"
+"0","formals(demand_return)"
+"1","$p
+"
+"1","
+"
+"1","
+"
+"0","# 查詢函數主體"
+"0","body(demand_return)"
+"1","{
+"
+"1","    q_d <- 10 - 5 * p
+"
+"1","    return(q_d)
+"
+"1","}
+"

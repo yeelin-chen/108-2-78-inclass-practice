@@ -1,0 +1,15 @@
+"0","surface_cube<-function(len,wet,hi)"
+"0","{sur<-len*wet*2+len*hi*2+wet*hi*2"
+"0","  return(sur)}"
+"0","surface_cube(20,10,15)"
+"1","[1]"
+"1"," 1300"
+"1","
+"
+"0","surface_cube"
+"1","function(len,wet,hi)
+"
+"1","{sur<-len*wet*2+len*hi*2+wet*hi*2
+"
+"1","  return(sur)}
+"

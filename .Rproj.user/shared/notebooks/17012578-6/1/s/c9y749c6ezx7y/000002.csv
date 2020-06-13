@@ -1,0 +1,5 @@
+"0","num<-Mask$`身分證字號`[[1]]"
+"0","last_num<-str_extract(num,""[:graph:]$"")"
+"0","`1st_odd_or_even`<-last_num %% 2"
+"2","Error in last_num%%2 : 二元運算子中有非數值引數
+"
