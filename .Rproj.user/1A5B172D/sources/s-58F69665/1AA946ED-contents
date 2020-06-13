@@ -193,9 +193,10 @@ source("https://www.dropbox.com/s/pc8qg2phs3ypcr8/midterm108_2.R?dl=1", encoding
 請由「應修系級」粹取出所有可能但「不重覆」的學系及年級組合，即取出的字串只會是"...系X"或"法律學系...組X"形式，其中X可以是1-4的任何數字，把結果存在majorGradeCombos（class character）。(系一定要有,數字也要有，但有些有AB班，如"經濟系1A"，"經濟系1B"，只要取出"經濟系1"即可，不用管AB字眼。另外，結果會有"...輔系X"字眼，不用剔除。)
 
 ```{r ans31}
-department<-str_extract(courseStructure$`應修系級`,"[:graph:]+系|組+[:digit:]")
-
-majorGradeCombos<-unique(each_department)
+department<-str_extract_all(courseStructure$`應修系級`,"[:graph:]+系(司法組|法學組|財經法組)?[0-9]")
+department
+vec_department<-unlist(department)
+majorGradeCombos<-unique(vec_department)
 majorGradeCombos
 
 ```
@@ -206,6 +207,7 @@ majorGradeCombos
 請找出101學年入學的經濟系學生在3年級時系上為他規劃的課程所有科目名稱，並把所有可能但不重覆的科目名稱存在econ101junior（class character）
 ```{r ans32}
 pick_eco<-str_detect(courseStructure$`應修系級`,"經濟系3")
+
 pick_103<-courseStructure$`學年`=="103"
 pick_both<-courseStructure$`科目名稱`[pick_eco &pick_103]
 econ101junior<-unique(pick_both)
@@ -218,4 +220,26 @@ econ101junior
 
 ```{r ans33}
 # coursesOffered
+pick_year1<-courseStructure$`學年`==as.character(entranceYear)
+pick_maj1<-str_detect(courseStructure$`應修系級`,paste0(major,1))
+
+pick_year2<-courseStructure$`學年`==as.character(entranceYear+2)
+pick_maj2<-str_detect(courseStructure$`應修系級`,paste0(major,2))
+
+pick_year3<-courseStructure$`學年`==as.character(entranceYear+3)
+pick_maj3<-str_detect(courseStructure$`應修系級`,paste0(major,3))
+
+pick_year4<-courseStructure$`學年`==as.character(entranceYear+4)
+pick_maj4<-str_detect(courseStructure$`應修系級`,paste0(major,4))
+
+
+ coursesOffered<-list(`不動103一年級`=courseStructure$`科目名稱`[pick_year1&pick_maj1],
+
+
+     `不動103二年級`=courseStructure$`科目名稱`[pick_year2&pick_maj2],
+     `不動103三年級`=courseStructure$`科目名稱`[pick_year3&pick_maj3],
+     `不動103四年級`=courseStructure$`科目名稱`[pick_year4&pick_maj4]
+  
+)
+ coursesOffered
 ```
