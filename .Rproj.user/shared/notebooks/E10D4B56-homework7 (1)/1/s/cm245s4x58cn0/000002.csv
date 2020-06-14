@@ -1,0 +1,7 @@
+"0","same_grade<-function(entranceYear,grade){ pick_year<-courseStructure$`學年`==as.character(entranceYear)"
+"0","  pick_grade<-str_detect(courseStructure$`應修系級`,paste0(""經濟系"",as.character(grade)))"
+"0","  course_grade<-courseStructure$`科目名稱`[pick_grade&pick_year]return(course_grade)}"
+"2","錯誤: unexpected symbol in:
+""  pick_grade<-str_detect(courseStructure$`應修系級`,paste0(""經濟系"",as.character(grade)))
+  course_grade<-courseStructure$`科目名稱`[pick_grade&pick_year]return""
+"
