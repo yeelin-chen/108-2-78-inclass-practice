@@ -1,4 +1,0 @@
-"0","read_csv(""https://www.dropbox.com/s/9xzccsvwrnctzul/mask.csv?dl=1"") -> Mask"
-"2","Error in open.connection(con, ""rb"") : 
-  Failed to connect to www.dropbox.com port 443: Timed out
-"

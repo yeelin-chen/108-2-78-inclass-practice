@@ -1,4 +1,0 @@
-"0","jsonlite::fromJSON(""https://www.dropbox.com/s/7myzzdnoor21hye/courseStructure2.json?dl=1"") -> courseStructure"
-"2","Error in open.connection(con, ""rb"") : 
-  Failed to connect to www.dropbox.com port 443: Timed out
-"

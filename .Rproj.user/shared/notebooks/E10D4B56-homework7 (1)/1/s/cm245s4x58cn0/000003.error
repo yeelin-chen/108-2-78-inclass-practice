@@ -1,1 +1,0 @@
-{"frames":[],"message":"錯誤: unexpected symbol in:\n\"  pick_grade<-str_detect(courseStructure$`應修系級`,paste0(\"經濟系\",as.character(grade)))\n  course_grade<-courseStructure$`科目名稱`[pick_grade&pick_year]return\"\n"}
