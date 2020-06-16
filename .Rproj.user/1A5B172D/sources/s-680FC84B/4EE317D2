@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1592306168842.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2747814230",
+    "id" : "4EE317D2",
+    "lastKnownWriteTime" : 1592311999,
+    "last_content_update" : 1592311999399,
+    "path" : "C:/Users/asus/Desktop/r語言/homework5.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "219,6",
+        "scrollLine" : "210"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
