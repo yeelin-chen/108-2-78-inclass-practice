@@ -1,4 +1,1 @@
-"0","```{r setup, include=FALSE}
-"
-"2","錯誤: 不能用零長度的變數名
-"
+"0","knitr::opts_chunk$set(echo = TRUE)"

@@ -1,4 +1,5 @@
 ---
+
 ---
 ```{r}
 `需求函數`<-function(p){q_d<-0+2*P}
@@ -77,6 +78,10 @@ sort(str_sub(char2, 1, 2))
 sort(str_sub(char2, 2, 2))
 ```
 ```{r}
+```
+
+
+```{r}
 population <- jsonlite::fromJSON("https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1")
 population <- unlist(population)
 ```
@@ -92,6 +97,19 @@ names(population)  # 元素名稱是台灣各縣市
 ```
 ```{r}
 covid19 <- jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json")
+```
+
+```{r}
+# 不可排序類別：性別、縣市、是否境外移入
+covid19$縣市 <- factor(covid19$縣市)
+covid19$性別 <- factor(covid19$性別)
+covid19$是否為境外移入 <- factor(covid19$是否為境外移入)
+# 可排序類別資料：年齡層
+covid19$年齡層 <- factor(covid19$年齡層, ordered = TRUE)
+levels(covid19$縣市)
+levels(covid19$性別)
+levels(covid19$是否為境外移入)
+levels(covid19$年齡層)
 ```
 
 ```{r}

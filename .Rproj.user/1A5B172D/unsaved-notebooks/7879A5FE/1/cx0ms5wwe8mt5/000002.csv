@@ -1,0 +1,6 @@
+"0","# 不可排序類別：性別、縣市、是否境外移入"
+"0","covid19$縣市 <- factor(covid19$縣市)"
+"0","covid19$性別 <- factor(covid19$性別)"
+"0","covid19$是否為境外移入 <- factor(covid19$是否為境外移入)"
+"0","# 可排序類別資料：年齡層"
+"0","covid19$年齡層 <- factor(covid19$年齡層, ordered = TRUE)"
