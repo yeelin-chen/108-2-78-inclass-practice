@@ -1,0 +1,10 @@
+"0","# Returns TRUE if the pattern do NOT match
+str_detect(fruit, ""^p"", negate = TRUE)
+"
+"1","[1]"
+"1","  TRUE"
+"1","  TRUE"
+"1"," FALSE"
+"1"," FALSE"
+"1","
+"

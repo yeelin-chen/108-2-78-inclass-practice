@@ -1,0 +1,2 @@
+"0","population <- jsonlite::fromJSON(""https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"")"
+"0","population <- unlist(population)"

@@ -1,0 +1,24 @@
+"0","strip1 <- ""[0-9]"""
+"0","strip2 <- ""(櫻桃|777|紅心)""  # 字群組合strip因為等下放中間所以用()括起來"
+"0","strip3 <- ""[A-Z]"""
+"0","myRegexSlotMachine <- paste0(strip1, strip2, strip3)"
+"0","print(myRegexSlotMachine)"
+"1","[1]"
+"1"," ""[0-9](櫻桃|777|紅心)[A-Z]"""
+"1","
+"
+"0","claimA <- ""我得到A檸檬99"""
+"0","claimB <- ""我的是7777Z"""
+"0","claimC <- ""我玩了兩次，一次是7蘋果H，另一次是5紅心J"""
+"0","# 顯示吻合的出象"
+"0","str_view(c(claimA, claimB, claimC), pattern = myRegexSlotMachine)"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
