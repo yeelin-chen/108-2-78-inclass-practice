@@ -1,0 +1,52 @@
+"0","class(courseStructure$`學年`)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"
+"0","get_courses<-function(entranceYear, major){"
+"0","  pick_year<-courseStructure$`學年`==as.character(entranceYear)"
+"0","  "
+"0","  pick_major1<-str_detect(courseStructure$`應修系級`,paste0(major,""1""))"
+"0","                          pick_major2<-str_detect(courseStructure$`應修系級`,paste0(major,""2""))"
+"0","pick_major3<-str_detect(courseStructure$`應修系級`,paste0(major,""3""))"
+"0","                                        pick_major4<-str_detect(courseStructure$`應修系級`,paste0(major,""4""))"
+"0","                                                                "
+"0","course<-list("
+"0","  year1=unique(courseStructure$`科目名稱`[pick_year&pick_major1]),"
+"0","  year2=unique(courseStructure$`科目名稱`[pick_year&pick_major2]),"
+"0","  year3=unique(courseStructure$`科目名稱`[pick_year&pick_major3]),"
+"0","  year4=unique(courseStructure$`科目名稱`[pick_year&pick_major4]))"
+"0","return(course)"
+"0","}"
+"0","get_courses"
+"1","function(entranceYear, major){
+"
+"1","  pick_year<-courseStructure$`學年`==as.character(entranceYear)
+"
+"1","  
+"
+"1","  pick_major1<-str_detect(courseStructure$`應修系級`,paste0(major,""1""))
+"
+"1","                          pick_major2<-str_detect(courseStructure$`應修系級`,paste0(major,""2""))
+"
+"1","pick_major3<-str_detect(courseStructure$`應修系級`,paste0(major,""3""))
+"
+"1","                                        pick_major4<-str_detect(courseStructure$`應修系級`,paste0(major,""4""))
+"
+"1","                                                                
+"
+"1","course<-list(
+"
+"1","  year1=unique(courseStructure$`科目名稱`[pick_year&pick_major1]),
+"
+"1","  year2=unique(courseStructure$`科目名稱`[pick_year&pick_major2]),
+"
+"1","  year3=unique(courseStructure$`科目名稱`[pick_year&pick_major3]),
+"
+"1","  year4=unique(courseStructure$`科目名稱`[pick_year&pick_major4]))
+"
+"1","return(course)
+"
+"1","}
+"
+"0","# get_courses"
