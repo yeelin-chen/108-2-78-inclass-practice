@@ -1,0 +1,5 @@
+"0","pickpark<-str_detect(ntpc_building_info$name,""停車場"")"
+"0","info_park<-map(ntpc_building_info,~.x[pickpark])"
+"0",""
+"0","ntpc_building_parking<-data.frame(type=info_park[[1]],floer=info_park[[2]],name=info_park[[3]],name_en=info_park[[4]])"
+"0","ntpc_building_parking"

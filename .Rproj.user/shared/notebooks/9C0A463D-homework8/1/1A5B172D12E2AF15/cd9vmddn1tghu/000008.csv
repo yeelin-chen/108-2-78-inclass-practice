@@ -1,0 +1,39 @@
+"0","search_engine<-function(k){"
+"0","  if(sum(str_detect(ntpc_building_info$name,k))==0){warning(""No Found"")"
+"0","  "
+"0","}else{"
+"0","  pick_k<-str_detect(ntpc_building_info$name,k)"
+"0","info_k<-map(ntpc_building_info,~.x[pick_k])"
+"0",""
+"0","ntpc_building_k<-data.frame(type=info_k[[1]],floer=info_k[[2]],name=info_k[[3]],name_en=info_k[[4]])"
+"0","return(ntpc_building_k)"
+"0","}"
+"0","  "
+"0","}"
+"0",""
+"0","search_engine"
+"1","function(k){
+"
+"1","  if(sum(str_detect(ntpc_building_info$name,k))==0){warning(""No Found"")
+"
+"1","  
+"
+"1","}else{
+"
+"1","  pick_k<-str_detect(ntpc_building_info$name,k)
+"
+"1","info_k<-map(ntpc_building_info,~.x[pick_k])
+"
+"1","
+"
+"1","ntpc_building_k<-data.frame(type=info_k[[1]],floer=info_k[[2]],name=info_k[[3]],name_en=info_k[[4]])
+"
+"1","return(ntpc_building_k)
+"
+"1","}
+"
+"1","  
+"
+"1","}
+"
+"0","# search_engine"

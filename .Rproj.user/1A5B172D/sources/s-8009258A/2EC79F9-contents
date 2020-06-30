@@ -1,16 +1,27 @@
 ---
 ---
+
 ```{r}
-i<-1
-student_i_section <- examSubmissionTime$section[[i]]
-student_i_time <- examSubmissionTime$time[[i]]
+# 先執行此行輸入學號
+readline(prompt = "請輸入你的學號") -> studentId 
 
-deadline <- lubridate::ymd_hms("2020-05-27 15:00:00", tz="Asia/Taipei") # 
+# readline一行也可改用以下取代。
+# rstudioapi::showPrompt(title="學號驗證",message="請輸入你的學號") -> studentId
 
-howEarly <- deadline - lubridate::ymd_hms(
-  student_i_time, tz="Asia/Taipei") 
-print(howEarly)
+
+# 之後才執行以下程式
+if(
+  str_detect(studentId,'^[43](1[01][0-9]|9[0-9])[0-9]{5}$',negate=T) # condition: 是否輸入學號正確？
+) {
+  warning("你所輸入的學號不正確")
+}
 ```
+
+
+
+
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
