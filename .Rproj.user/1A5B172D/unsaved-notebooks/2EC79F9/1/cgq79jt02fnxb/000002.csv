@@ -1,7 +1,0 @@
-"0","# 先執行此行輸入學號"
-"0","readline(prompt = ""請輸入你的學號"") -> studentId "
-"2","
-"
-"2","Error in gregexpr(calltext, singleline, fixed = TRUE) : 
-  正規表示式是無效的 UTF-8
-"
