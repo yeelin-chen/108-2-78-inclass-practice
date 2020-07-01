@@ -1,0 +1,53 @@
+"0","update_seatingChart<-function(seatingChart, selectedSeat){"
+"0","  spaceseat<-list_availableSeats(seatingChart)"
+"0","  if(selectedSeat%in%spaceseat){"
+"0","    rm_row=str_extract(selectedSeat,""[:lower:]{1,3}[:digit:]"")"
+"0","    re_num=str_extract(selectedSeat,""(?<=-)[:digit:]"")"
+"0","    needrow=seatingChart[seatingChart==rm_row]"
+"0","    "
+"0","    seatingChart[spaceseat==re_num][names(seatingChart$row1)==re_num]<--1"
+"0","  "
+"0","   "
+"0","    return(seatingChart)"
+"0","    "
+"0","  }else{"
+"0","      warning(""很抱歉您所選的位置已無法選"")"
+"0","      return(seatingChart)"
+"0","    }"
+"0","}"
+"0","update_seatingChart"
+"1","function(seatingChart, selectedSeat){
+"
+"1","  spaceseat<-list_availableSeats(seatingChart)
+"
+"1","  if(selectedSeat%in%spaceseat){
+"
+"1","    rm_row=str_extract(selectedSeat,""[:lower:]{1,3}[:digit:]"")
+"
+"1","    re_num=str_extract(selectedSeat,""(?<=-)[:digit:]"")
+"
+"1","    needrow=seatingChart[seatingChart==rm_row]
+"
+"1","    
+"
+"1","    seatingChart[spaceseat==re_num][names(seatingChart$row1)==re_num]<--1
+"
+"1","  
+"
+"1","   
+"
+"1","    return(seatingChart)
+"
+"1","    
+"
+"1","  }else{
+"
+"1","      warning(""很抱歉您所選的位置已無法選"")
+"
+"1","      return(seatingChart)
+"
+"1","    }
+"
+"1","}
+"
+"0","# update_seatingChart"

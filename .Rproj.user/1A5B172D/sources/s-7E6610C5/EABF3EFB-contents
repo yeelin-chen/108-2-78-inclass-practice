@@ -346,6 +346,86 @@ for(i in 1:100){
 summary(cars)
 ```
 
+```{r}
+my_fun2<-function(vec){
+  ans_vec<-c()
+  each<-unlist(map(vec,~.x%%2==0))
+  condition_vec<-ifelse(each,"even","ord")
+  for(n in 1:length(condition_vec)){
+    condition=condition_vec[[n]]
+    switch(condition,
+         "even"={ans=n/2},
+         "ord"={ans=-(n+1)/2})
+```
+
+```{r}
+vec<-c(-11,32,19,20)
+ans_vec<-c()
+  each<-unlist(map(vec,~.x%%2==0))
+  condition_vec<-ifelse(each,"even","ord")
+  condition_vec
+  for(n in 1:length(condition_vec)){
+    condition=condition_vec[[n]]
+    switch(condition,
+         "even"={ans=vec[[n]]/2},
+         "ord"={ans=-(vec[[n]]+1)/2})
+    ans
+    ans_vec<-c(ans_vec,ans)
+   }
+    
+     
+     ans_vec
+```
+
+```{r}
+ans_vec<-c(ans_vec,ans)}
+  return(ans_vec)
+  }
+
+my_fun2(c(-11,32,19,20))
+```
+```
+```{r}
+my_fun2<-function(vec){
+  ans_vec<-c()
+  each<-unlist(map(vec,~.x%%2==0))
+  condition_vec<-ifelse(each,"even","ord")
+  for(n in 1:length(condition_vec)){
+    condition=condition_vec[[n]]
+    switch(condition,
+         "even"={ans=n/2},
+         "ord"={ans=-(n+1)/2})
+    ans_vec<-c(ans_vec,ans)}
+  return(ans_vec)
+  }
+```
+
+```{r}
+my_fun2<-function(vec){
+  ans_vec<-c()
+  each<-unlist(map(vec,~.x%%2==0))
+  condition_vec<-ifelse(each,"even","ord")
+  for(n in 1:length(condition_vec)){
+    condition=condition_vec[[n]]
+    switch(condition,
+         "even"={ans=n/2},
+         "ord"={ans=-(n+1)/2})
+    ans_vec<-c(ans_vec,ans)}
+  return(ans_vec)
+  }
+
+my_fun2(c(-11,32,19,20))
+```
+
+my_fun2(c(-11,32,19,20))
+```
+
+
+
+
+```{r}
+
+
 ## Including Plots
 
 You can also embed plots, for example:
