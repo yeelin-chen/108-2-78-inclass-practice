@@ -10,4 +10,5 @@
 "0","# 一一將majors裡的系取出進行get_coursesAllYears運算以得到「取出系」在不同entranceYears入學年下的系課程規劃。"
 "0","majors %>% "
 "0","  map(~get_coursesAllYears(entranceYears, .x)) -> list_coursesAllMajorsAllYears"
-"0",""
+"2","Error in eval(lhs, parent, parent) : 找不到物件 'majors'
+"

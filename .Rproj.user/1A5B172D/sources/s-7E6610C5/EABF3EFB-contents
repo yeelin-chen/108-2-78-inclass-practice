@@ -266,6 +266,7 @@ switch(
   "odd"={fvalue <- -(n+1)/2},# 奇數；只有一行指令可省略{}
   warning("n要整數喔")
 )
+return(fvalue)
 
 
 }
@@ -298,6 +299,46 @@ switch(as.character(grade[[1]]),   ##取出第一個   ##但其實題目不是�
   
 )
 
+
+```
+```{r}
+compute_howEarly <- function(x){
+  for(x in 1:152){   ##接下來所有跟x有關的都要放在for裡面
+    
+    student_x_section <- examSubmissionTime$section[[x]]
+    student_x_time <- examSubmissionTime$time[[x]]
+
+  if(student_x_section=="56"){
+  deadline <- lubridate::ymd_hms("2020-05-27 15:00:00", tz="Asia/Taipei")
+} else{
+  deadline <- lubridate::ymd_hms("2020-05-27 17:00:00", tz="Asia/Taipei")
+}
+  early <- deadline-lubridate::ymd_hms(student_x_time,tz="Asia/Taipei")
+}
+return(early)
+  }
+
+
+compute_howEarly(x)
+```
+
+```{r}
+output <- vector("list", 10)
+output
+
+```
+```{r}
+sum <- 0
+for(i in 1:100){
+  newToss <- sample(c("正","反"), 1, replace=T)
+  if(newToss == "正"){
+    sum <- sum+1
+  }
+  print(glue::glue("已擲{i}次得到{sum}次正面"))
+  if(sum==5){
+    break
+  }
+}
 
 ```
 
