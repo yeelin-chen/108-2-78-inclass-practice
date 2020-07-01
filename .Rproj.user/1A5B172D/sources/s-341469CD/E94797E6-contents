@@ -1,0 +1,254 @@
+---
+---
+```{r}
+grade <- sample(1:100, 10, replace=T)
+grade
+
+grade %>% cut(c(-1,69,79,89,100)) -> grade
+grade
+
+levels(grade)
+
+switch(
+  as.character(grade[[1]]),
+  "(-1,69]"={
+    print("-_-")
+    "F"},
+  "(69,79]"={
+    print("棒")
+    "C"
+    },
+  "(79,89]"={
+    print("好棒")
+    "B"
+    },
+  "(89,100]"={
+    print("好棒棒")
+    "A"
+    }
+) -> letterGrade # 有回存時要螢幕印出的訊息一定要加print
+```
+
+
+```{r}
+# 先執行此行輸入學號
+readline(prompt = "請輸入你的學號") -> studentId 
+
+# readline一行也可改用以下取代。
+# rstudioapi::showPrompt(title="學號驗證",message="請輸入你的學號") -> studentId
+
+
+# 之後才執行以下程式
+if(
+  str_detect(studentId,'^[43](1[01][0-9]|9[0-9])[0-9]{5}$',negate=T) # condition: 是否輸入學號正確？
+) {
+  warning("你所輸入的學號不正確")
+}
+```
+```{r}
+a <- c(1,2,3)
+cut(a, c(1,2,3))->interval
+a
+interval
+```
+
+```{r}
+if(!require(lubridate)){ # condition: 是否「沒安裝lubridate」？
+  install.packages("lubridate")
+}
+lubridate::ymd_hms("2020-07-01 13:00:00 GMT")
+```
+
+```{r}
+library(lubridate)
+library(magrittr)
+nowtime <- glue::glue("{today()} 18:00:00") %>% ymd_hms(tz="Asia/Taipei")
+
+library(lubridate)
+library(glue)
+
+# 建立可當cutpoints的一天時間點
+cutpoints <-
+  c(
+    glue("{today()} 06:00:00"),
+    glue("{today()} 09:00:00"),
+    glue("{today()} 17:00:00"),
+    glue("{today()} 19:00:00"),
+    glue("{today()} 23:30:00"),
+    glue("{today()+days(1)} 01:00:00")
+  )
+cutpoints %>%
+  ymd_hms(tz="Asia/Taipei") -> cutpoints
+
+## 將nowtime轉成它對應的時段是"morning", "evening", 或其他。
+cut(nowtime, cutpoints) -> nowtime
+nowtime
+levels(nowtime)[c(1,3,5)] <-
+  c("morning","evening","jazz time")
+
+## 使用switch決定要做什麼事
+switch(
+  as.character(nowtime),
+  "morning"={
+    print("要不要來閱讀點國際時事？")
+    browseURL("https://economist.com")
+  },
+  "evening"={
+    print("需不需要點餐呢？")
+    browseURL("https://www.foodpanda.com.tw/")
+  },
+  "jazz time"={
+    print("放鬆聽點Jazz。")
+    browseURL("https://open.spotify.com/playlist/37i9dQZF1DXbITWG1ZJKYt")
+  },
+  {
+    print("機器人要休息，饒了我吧～～")
+  }
+)
+```
+
+```{r}
+cut(nowtime, cutpoints) -> nowtime
+levels(nowtime)[c(1,3,5)] <-
+  c("morning","evening","jazz time")
+```
+
+
+```{r}
+#1. 消費者選擇
+效用函數：
+U
+(
+a
+1
+,
+a
+2
+)
+=
+a
+1
+α
+∗
+a
+2
+(
+1
+−
+α
+)
+−
+m
+ 
+a1是該商品提供之服務所帶來的愉快程度，a2是該商品操作簡便性， 
+α
+ 是個介於0與1之間的數字， 
+m
+ 則是購買此商品所要付出的金額。
+
+想像有一系列類似的App你在考慮購買且只買一次、只買一個，每個App可用一組 
+(
+a
+1
+,
+a
+2
+,
+m
+)
+ 的數字組合來代表，n個App可表示成一個集合 
+(
+a
+1
+1
+,
+a
+2
+1
+,
+m
+1
+)
+,
+(
+a
+1
+2
+,
+a
+2
+2
+,
+m
+2
+)
+,
+.
+.
+.
+,
+(
+a
+1
+n
+,
+a
+2
+n
+,
+m
+n
+)
+ ，消費者只選擇這些App中效用函數值最高的那個。
+
+1.1 創造Ufun(a1, a2, m, alpha=0.5)函數，其中
+
+Arguments：
+
+a1, a2, m, alpha: 均為class numeric
+
+Value:
+
+回傳arugment values下所對應的效用函數值(class numeric)
+
+1.2 以下10個App計算並回傳它們的效用值(class numeric, length=10)
+```
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
