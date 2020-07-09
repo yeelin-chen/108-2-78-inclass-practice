@@ -1,2 +1,0 @@
-"0","jsonlite::fromJSON(""https://www.dropbox.com/s/eb4xcfp97ro7m3y/animal_names.json?dl=1"") -> animal_friends"
-"0","animal15 <- animal_friends[1:15]"

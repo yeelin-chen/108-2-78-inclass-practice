@@ -1,0 +1,350 @@
+---
+title: "期末考"
+output: html_document
+params:
+  studentName: "你的名字"
+  studentID: "你的學號"
+---
+# 注意事項
+
+存檔與填寫注意事項：
+
+假設你叫王小明，學號41078392。
+
+  1. 有些同學可能家裡電腦不是utf-8設定，為防萬一，請於存檔時使用：File > save with enconding, 然後選utf-8
+  
+  2. 接著File > Save As..., 然後檔名改成"原始檔名-學號", 如原始檔名為exam_final, 學號為41078392，則新檔名為"exam_2_final-41078392"
+
+  3. 本文檔開始的Frontmatter中，studentID（即key）其value目前為"你的學號"，以上面學號為例則必需改成"41078392"；而studentName（key）其value目前為"你的名字"，以上面名字為例則必需改成"王小明"
+  
+> 滿分100，每題配分相同
+
+> 前述存檔與frontmatter要求缺任何一個則扣5分。
+
+> 請於時間結束前上傳，最好提早一、二分鐘以免最後遲交。
+
+！！！！！遲交一律0分！！！！
+
+請先執行以下code chunk 引入所需packages，答案禁止引用其他套件（Package）。
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=F)
+library(jsonlite); library(lubridate); library(readr); library(stringr); library(purrr); library(magrittr); library(glue); library(SOAR); library(codetools)
+```
+
+## 1 副檔名
+
+### 1.1 檔案分類
+執行以下程序
+```{r data1}
+source("https://www.dropbox.com/s/7g3qu3vkoihs2jj/file_categorization.R?dl=1")
+# print(fakeFiles)
+sample(fakeFiles, length(fakeFiles))  -> fakeFiles
+sample(fakeFiles_long, length(fakeFiles_long))  -> fakeFiles_long
+```
+它會創造一個資料匣（目錄），"fake_dir"，fakeFiles會顯示該資料匣的文件檔名。fakeFiles底下檔名可分成R, Rmd, Rda三類，可由其副檔名（即.之後的字母）來判斷，字母大小寫不重要。
+
+請完成以下list物件fileCat內容，它有3個元素，
+
+  * 3個元素命名為"R", "RMD", "RDA"
+  
+  * 每個元素底下是一個atomic vector of character class, 分別是fakeFiles裡屬於該類的檔案名稱。
+  
+也就是說fileCat是fakeFiles分類後的結果（分類後結果要維持原副檔名的大小寫方式）, 假設，`fakeFiles = c("ab.R", "A289.Rmd", "x88.rDa")`，則`fileCat$R=c("ab.R"), fileCat$RMD=c("A289.Rmd"), fileCat$RDA=c("xx88.rDa")`。
+
+```{r ans11}
+fileCat <- vector("list",3)
+
+fileCat <- 
+  list(
+    R=fakeFiles %>% str_subset("\\.[Rr]$"),
+    RMD=fakeFiles %>% str_subset("\\.[Rr][Mm][Dd]$"),
+    RDA=fakeFiles %>% str_subset("\\.[Rr][Dd][Aa]$")
+  )
+# fileCat
+```
+
+### 1.2 分類函數
+一開始資料進來時同時也產生了一組較大的檔案群，存在物件fakeFiles_long裡
+```{r}
+print(fakeFiles_long)
+```
+請寫一個檔案類別分類函數sort_filetype(filenames):
+
+Argument:
+
+  * filenames: a vector of character class. 如fakeFiles_long的一群檔案名稱。
+
+Value: a list. 回傳值是個list，結構如前一小題的fileCat，依filenames檔案副檔名（即.後面字母，不分大小寫）分類，有幾類則回傳值這個list就有幾個元素，且每個元素以其副檔名類別用**大寫命名**，其底下的值即為filenames分類後屬於該類的檔案名（請**維持原名稱大小寫**）。
+
+```{r ans12}
+sort_filetype <- function(filenames){
+  filenames %>% str_extract("(?<=\\.)[:alpha:]+$") %>%
+    str_to_upper() %>% factor() -> extensionsUpper
+  list_fileCat <- vector("list", length(levels(extensionsUpper)))
+  names(list_fileCat) <- levels(extensionsUpper)
+  for(i in seq_along(extensionsUpper)){
+    list_fileCat[[extensionsUpper[[i]]]] <- filenames[extensionsUpper==extensionsUpper[[i]]]
+  }
+  return(list_fileCat)
+}
+# sort_filetype
+```
+
+## 2 影片觀看
+執行以下程序得到動物森友們在R遠離學習的影片觀看記錄：
+```{r data2}
+jsonlite::fromJSON("https://www.dropbox.com/s/t5qwt9p2cypom5x/learningDashboard.json?dl=1") %>% as.list() -> video
+```
+
+video是Google Analytics （簡稱GA）對森友的影片觀察記錄，其中包含
+
+  * eventAction: 觀影狀態，包含Play, Pause, 針對video progress bar (即我們看Vimoe影片時，下方會顯示看片進度長條)則記錄了進度條划過影片總長的0%，5%,....,95% 及划到最後的Watch to End。
+  
+  * activityTime: 則是eventActiono每個狀態變動產生的時間點, 以UTC時區記錄。
+  
+  * eventLabel: 在看的影片片名。
+  
+  * student: 看影片的森友名稱。
+  
+此外，同一位森友不見得一次就看完影片，可能分次看，第一次只連續看了15分鐘就停，第二次則看了1小時。一個連續觀看的狀態稱為一個session。
+
+  * sessionId: 用來區別不同觀影狀態變化所屬session的代號，故有相同sessionId的evenAction，表示這些狀態給動都是在一次連續的看片中發生。
+  
+  * id: 用來區別森友用什麼裝置在看片，不同裝置會用不同代碼表示。
+
+這15分鐘稱為一個session，離天他可能回來再看20分鐘，這又是另一個session。在一個session裡，
+
+video底下每個元素的意思為： 
+
+  * sessionId: 相同值的觀察表示來自於同一次的影片觀賞。
+
+### 2.1 class設定
+
+請將各別變數作下以class設定：
+
+  * activityTime: class date/time (即"POSIXct" "POSIXt") 並設定成台灣時區表示。
+  
+  * eventAction: class factor. 並將levels依
+    Play, Pause, 0%, 5%, 10%, ...95%, Watch to End排列
+  
+  * eventLabel: class factor. 並將levels依影片上線日期由越久遠排到越近，日期為影片名稱前面標示的"月份-日期"，如"03-31"表示3月31日上線。
+
+其他元素class則無需改變。
+
+```{r ans21}
+video$activityTime %>% ymd_hms() %>% with_tz(tzone="Asia/Taipei") ->
+  video$activityTime
+
+video$eventAction %>% factor() %>% levels() -> allLevels
+allLevels %>% str_subset("^[0-9]") -> percentageLevels
+percentageLevels %>% str_extract("[0-9]+(?=%)") %>% as.integer -> integerExpressions
+names(integerExpressions) <- percentageLevels
+integerExpressions %>% sort() %>% names() ->
+  required_percentageLevels
+video$eventAction %>% factor(levels=c("Play", "Pause", required_percentageLevels, "Watch to End")) -> video$eventAction
+
+video$eventLabel %>% factor() -> video$eventLabel
+
+# video[c("activityTime", "eventAction", "eventLabel")]
+```
+
+
+### 2.2 fit_criteria
+寫一個fit_equalCriteria(video, criteria)函數, 它用來篩選資料中符合criteria設定的觀測值：
+
+arguments;
+
+  * video: list. 如本大題一開始的video list資料。
+  
+  * criteria: list. 每個元素以name=value形式出現，代表要找出video的name元素其元素值中哪些「等於」value（當value只有一個值）或「屬於」value（當value是一群值形成的atomic vector. 如：
+```
+criteria=list(
+  eventLabel=c("05-06 字串運算（二）", "05-13 類別資料運算" ),
+  student="Chadder"
+)
+```
+表示我們想要video中那些
+
+  * eventLabel值「屬於」集合("04-15 元素增修", "04-15 元素選取（二）") （這裡是屬於，因為右邊值是長度為2的vector）
+  
+  * student「等於」"Chadder" （這裡是等於，因為右邊只有長度為1的值）。
+
+Value： 回傳一個list of 6，6個元素名稱如video(即"sessionId"    "activityTime", "eventAction", "eventLabel", "id", "student")但各別變數底下只保留來自符合criteria的觀測值。
+
+```{r ans22}
+
+fit_criteria <- function(video, criteria){
+  names(criteria) -> variableNames
+  pick <- !vector("logical", length(video[[1]]))
+  for(i in seq_along(variableNames)){
+  pick <- pick & 
+    video[[
+      variableNames[[i]]]] %in% criteria[[variableNames[[i]] ]]
+  }
+  video %>% map(~{.x[pick]}) 
+}
+
+criteria=list(
+  eventLabel=c("05-06 字串運算（二）", "05-13 類別資料運算" ),
+  student="Chadder"
+)
+video %>% fit_criteria(criteria) -> videoSubsample
+
+# fit_criteria
+```
+
+
+### 2.3 人次
+請記算每支影片有多少學生有觀影記錄, 將它存在numberOfWatchers物件裡，此物任為integer class， 並為named vector; name為影片名稱，如"03-31 List"，其值為與此片有互動的學生人次。
+```{r ans23}
+video$eventLabel %>% levels() -> videoLabels
+
+numberOfWatchers <- vector("integer", length(videoLabels))
+names(numberOfWatchers) <- videoLabels
+for(i in seq_along(videoLabels)){
+  pick_video_i <- 
+    video$eventLabel==videoLabels[[i]]
+  unique(video$student[pick_video_i]) %>%
+    length() -> numberOfWatchers[[i]]
+}
+# numberOfWatchers
+```
+
+### 2.4 影片觀看時長
+一位學生針對一部影片可能分很多次看而有數個sessions，要計算該生在該影片所花總時間得去算每個session有多長，假設有個session第一個eventAction發生在startTime，最後一個發生在endTime, 那可用
+`difftime(endTime, startTime, units='secs')` 去計這session的長度（以秒計）。最後再把所有session長度加總即為該生在該片所花秒數。
+
+請寫一個get_titleDuration(videoTitle, studentName)它可以求得studentName學生在videoTitle影片所花總時長（以秒計）
+
+Arguments:
+
+  videoTitle: a character. 來自video$eventLabel的某個影片名稱。
+  studentName: a character. 來自video$student裡的某個森友。
+  
+Value： 以秒計在該片所花總時長（由`difftime(..)`產生的值）
+
+Hint： `max()`, `min()`函數可用在Date/Time class上
+```{r ans24}
+get_sessionDuration <- function(video_ij, session_k){
+    video_ij %>% fit_criteria(list(sessionId=session_k)) %>%
+    {difftime(max(.$activityTime), min(.$activityTime), units="secs")}
+}
+
+get_titleDuration <- function(title_i, student_j){
+  video %>% fit_criteria(list(student=student_j, eventLabel=title_i)) -> video_ij
+  video_ij$sessionId %>% as.character() %>% unique() -> allSessions
+  map_dbl(allSessions, ~get_sessionDuration(video_ij, .x)) %>%
+    sum() 
+}
+
+
+title_i <- video$eventLabel[[1]]
+student_j <- video$student[[1]]
+get_titleDuration(title_i, student_j)
+
+# get_titleDuration
+```
+
+### 2.5 喜歡看片日期時段
+針對每個sessionId請留下它一開始的時間，將一天拆成 0, 1, ...., 23個一小時時段，0代表00:00-0:59, 1代表1:00-1:59, 依次類推。請記算星期一到日，每個時段有包含有多少個不同的sessionId，即有多少同學在該時段有影片學習活動，並將結果存成在viewCounts，它是個list, 有7個元素並命名為Sun, Mon, Tue, Wed, Thu, Fri, Sat. 而每個元素的值是個integer class vector, 長度為24，並命名為"0", "1", ..."23", 其對應的值是該時段的sessionId數目。
+
+```{r ans25}
+video$sessionId %>% factor() %>% levels() -> allSessionIds
+map(
+  allSessionIds,
+  ~min(video$activityTime[video$sessionId==.x])
+) %>% unlist %>% as_datetime() %>% with_tz(tzone="Asia/Taipei")-> sessionStarts
+wdays <- sessionStarts %>% weekdays()
+hrs <-sessionStarts %>% hour()
+viewCounts <- vector("list", 7)
+weekdays(seq(ymd("2020-07-05"), ymd("2020-07-11"), by=1)) -> weekdaysNames -> names(viewCounts)
+map(weekdaysNames,
+  ~table(hrs[wdays==.x])) -> viewCounts
+names(viewCounts) <- weekdaysNames
+
+# viewCounts
+```
+
+## 3. 數值分析
+
+### 3.1 數值微分
+一個函數f在x0點微分的定義為當e趨近於0時:
+  [f(x0+e)-f(x0)]/e
+所趨進的值。在實際電腦操作上我們會固定一個很小的e值。
+
+寫一個df函數 df(fun, x0, e=10^-8): 
+
+Arguments:
+
+  fun: function class。代表某個連續可微分的函數，例如，f(x)=1/x，那我們可以寫`myFun <- function(x) 1/x`, 並把myFun當df的第一個input。
+  
+  x0: fun定義域上的一個值。
+  
+  e: 一個預設為10^-8微小值。
+  
+Value： 依[f(x0+e)-f(x0)]/e計算完的數值微分值。
+
+```{r ans31}
+df <- function(fun, x0, e=10^-8){
+  (fun(x0+e)-fun(x0))/e
+}
+
+## 測試
+myFun <- function(x) 1/x
+myFun %>% df(0.3) 
+
+# df
+```
+### 3.2 求極值
+一個有極大值的函數f(x)在某些情況下可使用如下的方式求極大值x_max（即x_max能讓f()函數值最大。求解方式如下：
+
+  1. 先設x=x0
+  
+  2. 算f在x的微分（可使用上一題函數）, 並存在物件df_value
+  
+  3. 計算x_next=x+lambda*df_value (lambda是某個正數)
+  
+  4. 令x0=x_next, 回到第1步. 
+  
+反覆進行1-4，直到df_value的絕對值（可用`abs()`函數）很接近0後停止，停止前最後一個x_next即為x_max. 
+
+請寫一個函數myMaximization(fun,x0, e=e^-8):
+
+Argument:
+
+  fun: 同前一個function class. 其input是一個數字
+  x0: 隨便選的開始值
+  lambda:
+  e: 用在df的e input, 也是判斷df_value是不是夠小依據。`abs(df_value) <e`表示很接近0. 
+  
+Value: 一個代表x_max的數字。
+
+```{r ans32}
+
+myMaximization <- function(fun, x0, lambda=0.2, e=10^-8){
+  
+  # x0<-0
+  # lambda=0.2
+  # e=10^-8
+  count <- 0
+  max_count<- 500
+  df_value <- 1000
+  while(count < max_count & abs(df_value)>e){
+    df_value <- fun %>% df(x0)
+    x_next=x0+lambda*(df_value)
+    x0=x_next
+    cat('count: ', count, ' abs(df): ', abs(df_value), "x_next: ", x_next, "\n")
+    count=count+1
+    
+  }
+  return(x_next)
+}
+  
+## 測試
+fun <- function(x) -(x-2)^2
+fun %>% df(2)  
+fun %>% myMaximization(1)
+
+# myMaximization
+```
+
